@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { TravelType } from "../types/travel.type";
 import Button from "./ui/Button";
 
@@ -17,7 +18,10 @@ const TravelCardItem = ({ travel, travelList, setTravelList } : TravelCardItemPr
 
     return ( 
         <div className="shadow-md rounded-md">
-          <img src={travel.image} alt="" className="w-full" />
+          <Link to={`/travels/${travel.id}`}>
+            <img src={travel.image} alt="" className="w-full" />
+          </Link>
+          
           
           <div className="p-4">
             <h3 className="text-xl text-red-400">
@@ -26,10 +30,13 @@ const TravelCardItem = ({ travel, travelList, setTravelList } : TravelCardItemPr
             <p>{travel?.description?.substring(10)}...</p>
           </div>
 
-          <Button 
-            text="Show more"
-            variant="primary"
-          />
+          <Link to={`/travels/${travel.id}`}>
+            <Button
+              text="Show travel"
+              variant="primary"
+            />
+          </Link>
+
 
           <Button 
             text="Delete"

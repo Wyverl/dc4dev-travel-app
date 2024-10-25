@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import TravelCardItem from "./components/TravelCardItem"
 import { TravelType } from "./types/travel.type"
 import TravelFormAdd from "./components/TravelFormAdd"
+import TravelList from "./components/TravelList"
 
 function App() {
   const [counter, setCounter] = useState(0)
@@ -38,16 +38,11 @@ function App() {
         Number counter : {counter}
       </button>
 
-      <div className="grid grid-cols-3 gap-4">
-        {travelList.map((travel) => 
-          <TravelCardItem 
-            travel={travel} 
-            key={travel.id} 
-            travelList={travelList}
-            setTravelList={setTravelList}
-          />
-        )}
-      </div>
+      <TravelList
+        travelList={travelList}
+        setTravelList={setTravelList}
+      
+      />
     </div>
   )
 }
