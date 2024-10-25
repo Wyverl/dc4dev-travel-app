@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { TravelType } from "./types/travel.type"
 import TravelFormAdd from "./components/TravelFormAdd"
+import Typography from "./components/ui/Typography"
 import TravelList from "./components/TravelList"
 
 function App() {
@@ -21,7 +22,11 @@ function App() {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-4xl font-bold text-red-400 my-10">Travel App</h1>
+      <Typography
+        level={1}
+      >
+        Travel App
+      </Typography>
 
       <TravelFormAdd 
         travelList={travelList}
@@ -38,10 +43,9 @@ function App() {
         Number counter : {counter}
       </button>
 
-      <TravelList
+      <TravelList 
         travelList={travelList}
         setTravelList={setTravelList}
-      
       />
     </div>
   )

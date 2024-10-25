@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { TravelType } from "../types/travel.type";
 import Button from "./ui/Button";
+import Typography from "./ui/Typography";
 
 type TravelCardItemProps = {
     travel: TravelType
@@ -22,21 +23,14 @@ const TravelCardItem = ({ travel, travelList, setTravelList } : TravelCardItemPr
             <img src={travel.image} alt="" className="w-full" />
           </Link>
           
-          
           <div className="p-4">
-            <h3 className="text-xl text-red-400">
-                {travel.name}
-            </h3>
+            <Link to={`/travels/${travel.id}`}>
+              <Typography level={3}>
+                  {travel.name}
+              </Typography>
+            </Link>
             <p>{travel?.description?.substring(10)}...</p>
           </div>
-
-          <Link to={`/travels/${travel.id}`}>
-            <Button
-              text="Show travel"
-              variant="primary"
-            />
-          </Link>
-
 
           <Button 
             text="Delete"
