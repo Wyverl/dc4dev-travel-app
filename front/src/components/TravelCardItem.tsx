@@ -3,7 +3,7 @@ import { TravelType } from "../types/travel.type";
 import Button from "./ui/Button";
 import Typography from "./ui/Typography";
 import Modal from "./ui/Modal";
-import Modal from "./ui/Modal";
+
 
 type TravelCardItemProps = {
     travel: TravelType
