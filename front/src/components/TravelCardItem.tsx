@@ -3,6 +3,7 @@ import { TravelType } from "../types/travel.type";
 import Button from "./ui/Button";
 import Typography from "./ui/Typography";
 import Modal from "./ui/Modal";
+import Modal from "./ui/Modal";
 
 type TravelCardItemProps = {
     travel: TravelType
@@ -33,23 +34,19 @@ const TravelCardItem = ({ travel, travelList, setTravelList } : TravelCardItemPr
             <p>{travel?.description?.substring(10)}...</p>
           </div>
 
-          <Button 
-            text="Delete"
-            variant="danger"
-            onClick={handleDelete}
-          />
           <Modal>
-            <div className="flex flex-col gap-4"> 
+            <div className="flex flex-col gap-4">
               <p className="text-slate-500">
-                Êtez-vous sûr de vouloir supprimer ce voyage?
+                Êtes-vous sûr de vouloir supprimer ce voyage ?
               </p>
+              <Button 
+                text="Confirm to delete"
+                variant="danger"
+                onClick={handleDelete}
+              />
             </div>
-            <Button
-              text="Confirm to delete"
-              variant="danger"
-              onClick={handleDelete}
-            />
           </Modal>
+
         </div>
      );
 }
