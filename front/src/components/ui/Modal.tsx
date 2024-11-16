@@ -16,7 +16,7 @@ const Modal = ({ children } : ModalProps) => {
 
     return ( 
         <>
-            <Button text="Open Modal" onClick={handleOpen} />
+            <Button text="Supprimer" onClick={handleOpen} />
 
             {isOpen &&
                 <div className="fixed w-full h-screen bg-black z-50 top-0 left-0 bg-opacity-10 backdrop-blur-sm flex justify-center items-center" onClick={handleClick}>

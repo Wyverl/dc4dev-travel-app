@@ -15,7 +15,7 @@ function App() {
   }, [])
 
   const fetchTravelList = async () => {
-    const response = await fetch("/travels.json")
+    const response = await fetch("http://localhost:8000/travels")
     const data = await response.json()
     setTravelList(data)
   }
