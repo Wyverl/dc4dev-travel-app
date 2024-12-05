@@ -8,18 +8,25 @@ type TravelFormAddProps = {
     setTravelList: (travelList: TravelType[]) => void
 }
 
-const TravelFormAdd = ({ travelList, setTravelList } : TravelFormAddProps) => {
+const TravelFormAdd = ({} : TravelFormAddProps) => {
     const [travelAddData, setTravelAddData] = useState<TravelType>({})
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-    
-        travelAddData.id = travelList.length + 1
-    
-        setTravelList([
-          ...travelList,
-          travelAddData
-        ])
+
+        const response = await  fetch("http://localhost:8000/travels", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+         
+          body: JSON.stringify(travelAddData),
+        })
+        console.log(response);
+        if (!response.ok) {
+          throw new Error("Failed to add travel")
+      }
+      window.location.reload();
     }
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +36,7 @@ const TravelFormAdd = ({ travelList, setTravelList } : TravelFormAddProps) => {
           ...travelAddData,
           [name]: value
         }
+             
         setTravelAddData(newtravel)
       }
 

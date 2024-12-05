@@ -20,10 +20,12 @@ const Modal = ({ children } : ModalProps) => {
 
             {isOpen &&
                 <div className="fixed w-full h-screen bg-black z-50 top-0 left-0 bg-opacity-10 backdrop-blur-sm flex justify-center items-center" onClick={handleClick}>
-                    <div className="relative bg-white w-1/2 p-4" onMouseEnter={() => setOutOf(false)} onMouseLeave={() => setOutOf(true)}>
+                    <div className="relative bg-white w-1/2 p-4"
+                     onMouseEnter={() => setOutOf(false)} 
+                     onMouseLeave={() => setOutOf(true)}>
                         {children}
 
-                        <button className="absolute top-4 right-4" onClick={handleClose}>Close</button>
+                        {/* <button className="absolute top-4 right-4" onClick={handleClose}>Close</button> */}
                     </div>
                 </div>
             }

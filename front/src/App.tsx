@@ -5,7 +5,6 @@ import Typography from "./components/ui/Typography";
 import TravelList from "./components/TravelList";
 
 function App() {
-  const [counter, setCounter] = useState(0);
   const [travelList, setTravelList] = useState<TravelType[]>([]);
 
   useEffect(() => {
@@ -25,16 +24,6 @@ function App() {
       <Typography level={1}>Travel App</Typography>
 
       <TravelFormAdd travelList={travelList} setTravelList={setTravelList} />
-
-      <button
-        onClick={() => {
-          console.log("Click button");
-          setCounter(counter + 1);
-          console.log(counter);
-        }}
-      >
-        Number counter : {counter}
-      </button>
 
       <TravelList travelList={travelList} setTravelList={setTravelList} />
     </div>

@@ -11,13 +11,34 @@ type TravelCardItemProps = {
     setTravelList: (travelList: TravelType[]) => void
 }
 
-const TravelCardItem = ({ travel, travelList, setTravelList } : TravelCardItemProps) => {
+const TravelCardItem = ({ travel,  setTravelList } : TravelCardItemProps) => {
 
-  const handleDelete = () => {
-      const index = travelList.indexOf(travel)
-      travelList.splice(index, 1)
-      setTravelList([...travelList])
+  const url =  "http://localhost:8000/travels"; 
+
+
+  const fetchTravelList = async () => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setTravelList(data);
+  };
+
+
+  const handleDelete = async () => {
+
+    console.log("test");
+    const response = await fetch(url+`/${travel.id}`, {
+      method: "DELETE",
+  
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete travel");
+    }
+    else{
+      console.log("The travel as been delete");
+    }
+    fetchTravelList();
   }
+
 
     return ( 
         <div className="shadow-md rounded-md">
@@ -43,6 +64,7 @@ const TravelCardItem = ({ travel, travelList, setTravelList } : TravelCardItemPr
                 text="Confirm to delete"
                 variant="danger"
                 onClick={handleDelete}
+
               />
             </div>
           </Modal>

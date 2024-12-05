@@ -98,7 +98,6 @@ app.delete('/travels/:id', (req,res) => {
 app.get('/travels/:id', (req,res) => {
     const id = req.params.id;
     const travel = travelList.find((travel) => travel.id === Number(id));
-    console.log(travel);
     
     res.send(travel);
 })
