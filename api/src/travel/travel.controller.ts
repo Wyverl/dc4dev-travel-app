@@ -1,5 +1,5 @@
 import Router from "express";
-import { findAll, findOne, create , update } from "./travel.service";
+import { findAll, findOne, create , update ,remove} from "./travel.service";
 const router = Router();
 
 // Get all travel
@@ -33,5 +33,11 @@ router.put("/:id", async (req, res) => {
   const travel = await update(+id,travelInfo);
   res.send(travel);
 });
+
+router.delete("/:id", async (req,res) => {
+  const {id} = req.params;
+  const travel = await remove(+id);
+  res.send(travel);
+})
 
 export default router;

@@ -1,6 +1,7 @@
 import express, { request } from "express"
 import cors from "cors"
 import travelController from "../src/travel/travel.controller"
+import userController from "../src/user/user.controller";
 
 const app = express()
 app.use(express.json())
@@ -12,6 +13,7 @@ app.use(cors(
 ))
 
 app.use("/travels", travelController);
+app.use("/users",userController);
 
 app.get("/",(req,res) =>{
     res.send("Get all travel");
