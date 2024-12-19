@@ -6,26 +6,37 @@ import TravelList from "./components/TravelList";
 
 function App() {
   const [travelList, setTravelList] = useState<TravelType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log("Mounted");
-
     fetchTravelList();
   }, []);
 
   const fetchTravelList = async () => {
-    const response = await fetch("http://localhost:8000/travels");
-    const data = await response.json();
-    setTravelList(data);
+    setIsLoading(true);
+    try {
+      const response = await fetch("http://localhost:8000/travels");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setTravelList(data);
+    } catch (error) {
+      console.error("Error fetching travel list:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="container mx-auto">
       <Typography level={1}>Travel App</Typography>
-
-      <TravelFormAdd travelList={travelList} setTravelList={setTravelList} />
-
-      <TravelList travelList={travelList} setTravelList={setTravelList} />
+      <TravelFormAdd fetchTravelList={fetchTravelList} />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <TravelList travelList={travelList} setTravelList={setTravelList} />
+      )}
     </div>
   );
 }

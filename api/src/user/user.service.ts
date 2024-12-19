@@ -25,7 +25,7 @@ export const create = async(userDTO:IUserDTO):Promise<IUser[]> => {
 export const update = async(id:number,userDTO:IUserDTO):Promise<IUser[]> => {
     const {rows} = await pool.query("UPDATE users SET username = COALESCE ($2 , username), password = COALESCE ( $3,password) WHERE id = $1",
         [id,userDTO.username,userDTO.password]);
-    return rows;
+    return findOne(id);
 }
 
 // Delete a user

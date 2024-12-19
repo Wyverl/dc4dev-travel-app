@@ -52,7 +52,7 @@ const TravelCardItem = ({ travel,  setTravelList } : TravelCardItemProps) => {
                   {travel.name}
               </Typography>
             </Link>
-            <p>{travel?.description?.substring(10)}...</p>
+            <p>{travel?.description}...</p>
           </div>
 
           <Modal>

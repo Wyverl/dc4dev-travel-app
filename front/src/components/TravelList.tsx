@@ -6,6 +6,7 @@ type TravelListProps = {
     setTravelList: (travelList: TravelType[]) => void
 }
 
+
 const TravelList = ({ travelList, setTravelList } : TravelListProps) => {
     return ( 
         <div className="grid grid-cols-3 gap-4">
