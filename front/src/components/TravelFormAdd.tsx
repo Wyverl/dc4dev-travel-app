@@ -3,31 +3,37 @@ import { TravelType } from "../types/travel.type"
 import Button from "./ui/Button"
 import Input from "./ui/Input"
 
-type TravelFormAddProps = {
-    travelList: TravelType[]
-    setTravelList: (travelList: TravelType[]) => void
+interface TravelFormAddProps {
+  fetchTravelList: () => Promise<void>;
 }
 
-const TravelFormAdd = ({} : TravelFormAddProps) => {
+const TravelFormAdd: React.FC<TravelFormAddProps> = ({ fetchTravelList }) => {
     const [travelAddData, setTravelAddData] = useState<TravelType>({})
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-
-        const response = await  fetch("http://localhost:8000/travels", {
+      e.preventDefault();
+  
+      try {
+        const response = await fetch("http://localhost:8000/travels", {
           method: "POST",
           headers: {
-              "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
-         
           body: JSON.stringify(travelAddData),
-        })
-        console.log(response);
+        });
+  
         if (!response.ok) {
-          throw new Error("Failed to add travel")
+          throw new Error("Failed to add travel");
+        }
+  
+        console.log("The travel has been created");
+        setTravelAddData({}); // Réinitialise les champs du formulaire
+        await fetchTravelList(); // Rafraîchit la liste des voyages
+      } catch (error) {
+        console.error("Error adding travel:", error);
       }
-      window.location.reload();
-    }
+    };
+
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target
@@ -37,7 +43,7 @@ const TravelFormAdd = ({} : TravelFormAddProps) => {
           [name]: value
         }
              
-        setTravelAddData(newtravel)
+       setTravelAddData(newtravel)
       }
 
     return ( 

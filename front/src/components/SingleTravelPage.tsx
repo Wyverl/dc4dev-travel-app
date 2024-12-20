@@ -5,7 +5,6 @@ import Typography from "./ui/Typography";
 import TravelList from "./TravelList";
 import Button from "./ui/Button";
 import Input from "./ui/Input"
-import Modal from "./ui/Modal";
 
 const SingleTravelPage = () => {
 
@@ -47,7 +46,7 @@ const SingleTravelPage = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()        
 
-        const response = await  fetch(url+`/${travel.id}`, {
+        const response = await fetch(url+`/${travel.id}`, {
           method: "PUT",
           headers: {
               "Content-Type": "application/json",
@@ -59,7 +58,7 @@ const SingleTravelPage = () => {
         if (!response.ok) {
           throw new Error("Failed to add the new information for the travel")
       }
-
+      fetchTravel();
     }
 
 
@@ -99,7 +98,7 @@ const SingleTravelPage = () => {
                 <Input type="text" placeholder="image" onChange={handleChange} name="image" />
                 <Input type="text" placeholder="description" onChange={handleChange} name="description" />
                 <Button 
-                    text="Change travel"
+                    text="Change travel info"
                     type="submit"
                 />
             </form>
